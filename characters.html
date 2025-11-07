@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sanrio Characters - Bian Jingyi</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>Sanrio Characters</h1>
+    <nav>
+      <a href="index.home">Home</a >
+      <a href="characters.html">Characters</a >
+      <a href="gallery.html">Gallery</a >
+      <a href="about.html">About</a >
+    </nav>
+  </header>
+
+  <main>
+    <h2>Meet the Characters</h2>
+    <p>Learn more about your favorite Sanrio friends!</p >
+
+    <section class="characters">
+      <!-- Hello Kitty -->
+      <div class="character">
+        <img src="images/hello_kitty_1.png" alt="Hello Kitty">
+        <h4>Hello Kitty ✨</h4>
+        <div class="character-info">
+          <p>Birthday: November 1</p >
+          <p>Favorite: Apples & Friendship</p >
+          <p>Personality: Cheerful and kind</p >
+          <p>Fun Fact: Her full name is Kitty White!</p >
+        </div>
+      </div>
+
+      <!-- My Melody -->
+      <div class="character">
+        <img src="images/my_melody_1.png" alt="My Melody">
+        <h4>My Melody ✨</h4>
+        <div class="character-info">
+          <p>Birthday: January 18</p >
+          <p>Favorite: Almond cookies</p >
+          <p>Personality: Sweet and shy</p >
+          <p>Fun Fact: Always wears a red or pink hood!</p >
+        </div>
+      </div>
+
+      <!-- Kuromi -->
+      <div class="character">
+        <img src="images/kuromi_1.png" alt="Kuromi">
+        <h4>Kuromi ✨</h4>
+        <div class="character-info">
+          <p>Birthday: July 31</p >
+          <p>Favorite: Mischief & Pranks</p >
+          <p>Personality: Naughty but cute</p >
+          <p>Fun Fact: Loves writing in her diary!</p >
+        </div>
+      </div>
+
+      <!-- Pochacco -->
+      <div class="character">
+        <img src="images/pochacco_1.png" alt="Pochacco">
+        <h4>Pochacco ✨</h4>
+        <div class="character-info">
+          <p>Birthday: February 29</p >
+          <p>Favorite: Sports & Soccer</p >
+          <p>Personality: Energetic and playful</p >
+          <p>Fun Fact: Loves eating pudding!</p >
+        </div>
+      </div>
+
+      <!-- Cinnamoroll -->
+      <div class="character">
+        <img src="images/cinnamoroll_1.png" alt="Cinnamoroll">
+        <h4>Cinnamoroll ✨</h4>
+        <div class="character-info">
+          <p>Birthday: March 6</p >
+          <p>Favorite: Flying and clouds</p >
+          <p>Personality: Gentle and friendly</p >
+          <p>Fun Fact: Has big fluffy ears for flying!</p >
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>© 2025 Bian Jingyi</p >
+  </footer>
+
+<!-- Lightbox + Back to Top + 折叠功能 -->
+<script>
+  // 图片放大 Lightbox + 背景模糊
+  function openLightbox(src) {
+    const blurLayer = document.createElement("div");
+    blurLayer.style = `
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(6px);
+      z-index: 999;
+      opacity: 0; transition: opacity 0.3s ease;
+    `;
+    document.body.appendChild(blurLayer);
+
+    const overlay = document.createElement("div");
+    overlay.style = `
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      display: flex; justify-content: center; align-items: center;
+      z-index: 1000; opacity: 0; transition: opacity 0.3s ease;
+    `;
+    const img = document.createElement("img");
+    img.src = src;
+    img.style = `
+      max-width: 90%; max-height: 90%;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(255,255,255,0.4);
+      transform: scale(0.95);
+      transition: transform 0.3s ease;
+    `;
+    overlay.appendChild(img);
+    document.body.appendChild(overlay);
+
+    requestAnimationFrame(() => {
+      blurLayer.style.opacity = 1;
+      overlay.style.opacity = 1;
+      img.style.transform = "scale(1)";
+    });
+
+    overlay.onclick = () => {
+      blurLayer.style.opacity = 0;
+      overlay.style.opacity = 0;
+      img.style.transform = "scale(0.95)";
+      setTimeout(() => {
+        document.body.removeChild(overlay);
+        document.body.removeChild(blurLayer);
+      }, 300);
+    };
+  }
+
+  document.querySelectorAll(".gallery img, .character img").forEach(img => {
+    img.style.cursor = "pointer";
+    img.addEventListener("click", () => openLightbox(img.src));
+  });
+
+  // 返回顶部按钮
+  const topBtn = document.createElement("button");
+  topBtn.id = "topBtn";
+  topBtn.innerText = "↑";
+  document.body.appendChild(topBtn);
+
+  window.onscroll = () => {
+    topBtn.style.display = (document.documentElement.scrollTop > 200) ? "block" : "none";
+  };
+
+  topBtn.onclick = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  // 折叠详细信息功能
+  document.querySelectorAll(".character h4").forEach(title => {
+    title.style.cursor = "pointer";
+    title.addEventListener("click", () => {
+      const info = title.nextElementSibling;
+      info.classList.toggle("show");
+    });
+  });
+</script>
+</body>
+</html>

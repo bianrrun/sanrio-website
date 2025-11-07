@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sanrio Gallery - Bian Jingyi</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>Sanrio Character Gallery</h1>
+    <nav>
+      <a href=" ">Home</a >
+      <a href="characters.html">Characters</a >
+      <a href="gallery.html">Gallery</a >
+      <a href="about.html">About</a >
+    </nav>
+  </header>
+
+  <main>
+    <h2>Character Gallery</h2>
+    <p>Enjoy cute photos of Hello Kitty and her adorable friends!</p >
+
+    <!-- 角色竖向列（每个角色四张图片，一行五列） -->
+    <section class="gallery-vertical">
+      <!-- Hello Kitty 列 -->
+      <div class="character-column">
+        <img src="images/hello_kitty_1.png" alt="Hello Kitty 1">
+        <img src="images/hello_kitty_2.png" alt="Hello Kitty 2">
+        <img src="images/hello_kitty_3.png" alt="Hello Kitty 3">
+        <img src="images/hello_kitty_4.png" alt="Hello Kitty 4">
+        <div class="character-info">
+          <h4>Hello Kitty</h4>
+          <p>Birthday: November 1</p >
+          <p>Favorite: Apples & Friendship</p >
+          <p>Personality: Cheerful and kind</p >
+        </div>
+      </div>
+
+      <!-- My Melody 列 -->
+      <div class="character-column">
+        <img src="images/my_melody_1.png" alt="My Melody 1">
+        <img src="images/my_melody_2.png" alt="My Melody 2">
+        <img src="images/my_melody_3.png" alt="My Melody 3">
+        <img src="images/my_melody_4.png" alt="My Melody 4">
+        <div class="character-info">
+          <h4>My Melody</h4>
+          <p>Birthday: January 18</p >
+          <p>Favorite: Almond cookies</p >
+          <p>Personality: Sweet and shy</p >
+        </div>
+      </div>
+
+      <!-- Kuromi 列 -->
+      <div class="character-column">
+        <img src="images/kuromi_1.png" alt="Kuromi 1">
+        <img src="images/kuromi_2.png" alt="Kuromi 2">
+        <img src="images/kuromi_3.png" alt="Kuromi 3">
+        <img src="images/kuromi_4.png" alt="Kuromi 4">
+        <div class="character-info">
+          <h4>Kuromi</h4>
+          <p>Birthday: July 31</p >
+          <p>Favorite: Mischief & Pranks</p >
+          <p>Personality: Naughty but cute</p >
+        </div>
+      </div>
+
+      <!-- Pochacco 列 -->
+      <div class="character-column">
+        <img src="images/pochacco_1.png" alt="Pochacco 1">
+        <img src="images/pochacco_2.png" alt="Pochacco 2">
+        <img src="images/pochacco_3.png" alt="Pochacco 3">
+        <img src="images/pochacco_4.png" alt="Pochacco 4">
+        <div class="character-info">
+          <h4>Pochacco</h4>
+          <p>Birthday: February 29</p >
+          <p>Favorite: Sports & Soccer</p >
+          <p>Personality: Energetic and playful</p >
+        </div>
+      </div>
+
+      <!-- Cinnamoroll 列 -->
+      <div class="character-column">
+        <img src="images/cinnamoroll_1.png" alt="Cinnamoroll 1">
+        <img src="images/cinnamoroll_2.png" alt="Cinnamoroll 2">
+        <img src="images/cinnamoroll_3.png" alt="Cinnamoroll 3">
+        <img src="images/cinnamoroll_4.png" alt="Cinnamoroll 4">
+        <div class="character-info">
+          <h4>Cinnamoroll</h4>
+          <p>Birthday: March 6</p >
+          <p>Favorite: Flying and clouds</p >
+          <p>Personality: Gentle and friendly</p >
+        </div>
+      </div>
+    </section>
+
+    <!-- Group Photos -->
+    <section>
+      <h3>Group Photos</h3>
+      <p>All Sanrio friends together in one frame 💖</p >
+      <div class="gallery">
+        <img src="images/sanrio_group1.png" alt="Sanrio Group 1" width="350">
+        <img src="images/sanrio_group2.png" alt="Sanrio Group 2" width="350">
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>© 2025 Bian Jingyi</p >
+  </footer>
+
+<!-- Lightbox + Back to Top -->
+<script>
+  // 图片放大 Lightbox + 背景模糊
+  function openLightbox(src) {
+    const blurLayer = document.createElement("div");
+    blurLayer.style = `
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(6px);
+      z-index: 999;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    `;
+    document.body.appendChild(blurLayer);
+
+    const overlay = document.createElement("div");
+    overlay.style = `
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      display: flex; justify-content: center; align-items: center;
+      z-index: 1000; opacity: 0;
+      transition: opacity 0.3s ease;
+    `;
+    const img = document.createElement("img");
+    img.src = src;
+    img.style = `
+      max-width: 90%; max-height: 90%;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(255,255,255,0.4);
+      transform: scale(0.95);
+      transition: transform 0.3s ease;
+    `;
+    overlay.appendChild(img);
+    document.body.appendChild(overlay);
+
+    requestAnimationFrame(() => {
+      blurLayer.style.opacity = 1;
+      overlay.style.opacity = 1;
+      img.style.transform = "scale(1)";
+    });
+
+    overlay.onclick = () => {
+      blurLayer.style.opacity = 0;
+      overlay.style.opacity = 0;
+      img.style.transform = "scale(0.95)";
+      setTimeout(() => {
+        document.body.removeChild(overlay);
+        document.body.removeChild(blurLayer);
+      }, 300);
+    };
+  }
+
+  // 图片点击触发放大
+  document.querySelectorAll(".gallery img, .character-column img").forEach(img => {
+    img.style.cursor = "pointer";
+    img.addEventListener("click", () => openLightbox(img.src));
+  });
+
+  // 返回顶部按钮
+  const topBtn = document.createElement("button");
+  topBtn.id = "topBtn";
+  topBtn.innerText = "↑";
+  document.body.appendChild(topBtn);
+
+  window.onscroll = () => {
+    topBtn.style.display = (document.documentElement.scrollTop > 200) ? "block" : "none";
+  };
+  topBtn.onclick = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+</script>
+
+</body>
+</html>
+
